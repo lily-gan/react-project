@@ -1,22 +1,33 @@
 import React,{Component} from 'react'
 import logo from './logo.png'
 import './index.less'
-
+import {reqLogin} from '../../api'
 import {
-  Form, Icon, Input, Button, Checkbox,
+  Form, Icon, Input, Button,message
 } from 'antd';
 const Item = Form.Item;
 @Form.create()
  class Login extends Component {
    login = (e) => {
      e.preventDefault();
-     this.props.form.validateFields((err,values)=>{
+     this.props.form.validateFields(async(err,values)=>{
        if(!err){
-         console.log(values);
-         console.log('表单校验失败');
-         console.log(err);
-         console.log('表单校验失败');
-       }
+         //校验成功
+         const {username,password} = values;
+         const result = await reqLogin(username,password)
+         console.log(result,'result');
+         if(result.status === 0){
+           message.success('登录成功~')
+           this.props.history.replace('/')
+         }else{
+           message.error(result.msg,2)
+         }
+       }else {
+           console.log(values);
+           console.log('表单校验失败');
+           console.log(err);
+           console.log('表单校验失败');
+         }
      })
    }
    validator =(rule,value,callback)=>{

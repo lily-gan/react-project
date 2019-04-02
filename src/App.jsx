@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Route,Redirect,Switch,withRouter} from 'react-router-dom'
+import {Route,Switch,withRouter} from 'react-router-dom'
 import Login from './pages/login'
 import Admin from './pages/admin'
 
@@ -8,8 +8,7 @@ class App extends Component{
     return(
       <Switch>
         <Route path='/login' component={Login}/>
-        <Route path='/admin' component={Admin}/>
-        <Redirect to='/login'/>
+        <Route path='/' component={Admin}/>
       </Switch>
     )
   }
