@@ -2,9 +2,12 @@ import React,{Component} from 'react'
 import logo from './logo.png'
 import './index.less'
 import {reqLogin} from '../../api'
+import {setItem} from '../../utils/storage-utils'
+
 import {
   Form, Icon, Input, Button,message
 } from 'antd';
+
 const Item = Form.Item;
 @Form.create()
  class Login extends Component {
@@ -17,7 +20,9 @@ const Item = Form.Item;
          const result = await reqLogin(username,password)
          console.log(result,'result');
          if(result.status === 0){
-           message.success('登录成功~')
+           message.success('登录成功~');
+           //保存用户信息
+           setItem(result.data);
            this.props.history.replace('/')
          }else{
            message.error(result.msg,2)
