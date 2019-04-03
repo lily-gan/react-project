@@ -2,13 +2,20 @@
 import React, {Component} from 'react'
 import {getItem} from '../../utils/storage-utils';
 import memory from '../../utils/memory-utils'
-import {Route} from 'react-router-dom'
+import {Route,Redirect,Switch} from 'react-router-dom'
 import LeftNav from '../../components/left-nav'
 import Home from '../home'
 import Category from '../category'
 import Product from '../product'
+import HeaderMain from '../../components/header-main/'
+import Role from '../../pages/role'
+import Bar from '../../pages/charts/bar'
+import Line from '../../pages/charts/line'
+import Pie from '../../pages/charts/pie'
+import User from '../../pages/user'
+
 import {
-  Layout,Breadcrumb
+  Layout
 } from 'antd';
 const {
   Header, Content, Footer, Sider,
@@ -34,6 +41,7 @@ export default class Admin extends Component{
   render() {
     const {collapsed} = this.state;
     const opacity = collapsed ? 0:1;
+
     return (
       <Layout style={{ minHeight: '100vh' }}>
         <Sider
@@ -44,16 +52,22 @@ export default class Admin extends Component{
           <LeftNav opacity={opacity}/>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
-            </Breadcrumb>
+          <Header style={{  background: '#fff', padding: 0 , height: 100}} >
+            <HeaderMain/>
+          </Header>
+          <Content style={{ margin: '20px 16px' }}>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              <Route path='/home' component={Home}/>
-              <Route path='/category' component={Category}/>
-              <Route path='/product' component={Product}/>
+              <Switch>
+                <Route path='/home' component={Home}/>
+                <Route path='/category' component={Category}/>
+                <Route path='/product' component={Product}/>
+                <Route path='/user' component={User}/>
+                <Route path='/role' component={Role}/>
+                <Route path='/charts/bar' component={Bar}/>
+                <Route path='/charts/line' component={Line}/>
+                <Route path='/charts/pie' component={Pie}/>
+                <Redirect to='/home'/>
+              </Switch>
             </div>
           </Content>
           <Footer style={{ textAlign: 'center' }}>

@@ -15,7 +15,7 @@ const Item = Menu.Item;
     //初始化状态
     const openKeys=[];
     this.menus=this.CreateMenu(menuList,openKeys);
-    console.log(this.menus,'111111');
+    // console.log(this.menus,'111111');
     this.state={
       openKeys
     }
