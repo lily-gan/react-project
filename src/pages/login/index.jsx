@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import logo from './logo.png'
+import logo from '../../assets/images/logo.png'
 import './index.less'
 import {reqLogin} from '../../api'
 import {setItem} from '../../utils/storage-utils'
