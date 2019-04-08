@@ -18,7 +18,6 @@ export default function ajax(url, data, method = 'GET') {
   } else {
     //post请求
     promise = axios.post(url,data)
-    console.log(promise);
   }
   return promise
     .then(res=>{

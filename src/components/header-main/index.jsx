@@ -16,10 +16,11 @@ class HeaderMain extends Component{
     weatherImg:'http://api.map.baidu.com/images/weather/day/qing.png',
     weather:'晴'
   }
-  logout=()=>{
+  //退出登录
+  logout = () =>{
     Modal.confirm({
       title:'您确认要退出登录吗?',
-      onOK:()=>{
+      onOk:() =>{
         //清空所有用户信息
         memory.user = {};
         removeItem();

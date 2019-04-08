@@ -18,7 +18,6 @@ const Item = Form.Item;
          //校验成功
          const {username,password} = values;
          const result = await reqLogin(username,password)
-         console.log(result,'result');
          if(result.status === 0){
            message.success('登录成功~');
            //保存用户信息

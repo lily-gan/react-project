@@ -6,7 +6,7 @@ import {Route,Redirect,Switch} from 'react-router-dom'
 import LeftNav from '../../components/left-nav'
 import Home from '../home'
 import Category from '../category'
-import Product from '../product'
+import Product from '../product/products'
 import HeaderMain from '../../components/header-main/'
 import Role from '../../pages/role'
 import Bar from '../../pages/charts/bar'
@@ -28,17 +28,19 @@ export default class Admin extends Component{
     };
     //判断用户是否登录过
     const user = getItem();
-    if(!user || !user._id){
-      //用户没登录就返回登录页面
-      return this.props.history.replace('/login');
+    if(user || user._id){
+      //在内存中存储用户信息
+      memory.user = user;
     }
-    memory.user = user;
   }
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
   }
   render() {
+    if(!memory.user || !memory.user._id){
+      return <Redirect to='/login'/>
+    }
     const {collapsed} = this.state;
     const opacity = collapsed ? 0:1;
 
