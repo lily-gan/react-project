@@ -30,6 +30,11 @@ export const reqAddCategory = (parentId,categoryName)=>ajax(prefix+'/manage/cate
 export const reqUpdateCategoryName = (categoryId,categoryName)=>ajax(prefix + '/manage/category/update',{categoryId,categoryName},'POST');
 //请求商品列表
 export const reqGetProducts = (pageNum,pageSize)=>ajax(prefix + '/manage/product/list',{pageNum,pageSize});
-//请求添加商品
-export const reqAddProducts =(categoryId,pCategoryId,name,price,desc)=>ajax(prefix+'/manage/product/add',{categoryId,pCategoryId,name,price,desc},'POST');
+//请求添加商品函数
+export const reqAddProduct =(product)=>ajax(prefix+'/manage/product/add',product,'POST');
+//请求删除图片函数
+export const reqDelImage=(name,id)=>ajax(prefix+'/manage/img/delete',{name,id},'POST');
+//请求修改产品数据函数
+export const reqUpdateProduct =(product)=>ajax(prefix+'/manage/product/update',product,'POST');
+
 
